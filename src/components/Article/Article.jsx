@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 
 function Article({title, author, description, url }) {
     return (
-        <ul>
+        <div>
             <li key={url}>
                 <h1>{title}</h1>
                 <h3>{author}</h3>
                 <p>{description}</p>
                 <a>{url}</a>
             </li>   
-        </ul>
+        </div>
     )
 }
 
