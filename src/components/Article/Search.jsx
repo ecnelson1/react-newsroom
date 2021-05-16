@@ -8,8 +8,9 @@ function Search({keyword, onKeywordChange, onSubmit}) {
             <input
             type="text"
             value={keyword}
-            onChange={onKeywordChange}/>
-            <button>Search!</button>
+            onChange={onKeywordChange}
+            aria-label="Search"/>
+            <button aria-label='Submit'>Search!</button>
         </form>
         );
     }

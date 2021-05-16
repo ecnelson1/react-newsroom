@@ -4,7 +4,7 @@ import Article from './Article'
 
 function ArticleList({articles}) {
     return (
-        <ul aria-label="articles">
+        <ul aria-label="articles-list">
             {articles.map((article) => {
                 return(
                     <Article
