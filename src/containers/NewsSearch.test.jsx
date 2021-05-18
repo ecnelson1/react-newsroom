@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import fireEvent from '@testing-library/user-event';
 import NewsSearch from '../containers/NewsSearch';
 
 require('dotenv').config();
@@ -15,16 +15,16 @@ describe('NewsSearch Container', () => {
     expect(ul).not.toBeEmptyDOMElement();
 
     const input = await screen.findByLabelText('Search')
-    userEvent.type(input, 'bitcoin');
+    fireEvent.type(input, 'bitcoin');
 
     const ButtonClick = await screen.findByRole('button', {
       name: 'Submit',
     });
-    userEvent.click(ButtonClick);
+    fireEvent.click(ButtonClick);
 
     return waitFor(() => {
       const articles = screen.getAllByText('bitcoin', { exact: false });
-      expect(articles).toHaveLength(38);
+      expect(articles).toHaveLength(37);
     });
   });
 });
