@@ -3,7 +3,23 @@ import { render, screen, waitFor } from '@testing-library/react';
 import fireEvent from '@testing-library/user-event';
 import NewsSearch from '../containers/NewsSearch';
 
-require('dotenv').config();
+
+
+const keyword = 'El Duderino'
+jest.mock('../services/NewsAPI', () => ({
+  getArticles: () => [{
+    author: 'El Duderino',
+    title: 'Living Like Lebowski',
+    description: 'Tao of Dude',
+    url: 'dudeism.com',
+  }],
+  getArticleByKeyword: (keyword) =>[{
+    author: 'El Duderino',
+    title: 'Living Like Lebowski',
+    description: 'Tao of Dude',
+    url: 'dudeism.com',
+  }] 
+}))
 
 describe('NewsSearch Container', () => {
   it('displays a list of Articles that update by keyword search', async () => {
@@ -15,7 +31,7 @@ describe('NewsSearch Container', () => {
     expect(ul).not.toBeEmptyDOMElement();
 
     const input = await screen.findByLabelText('Search')
-    fireEvent.type(input, 'bitcoin');
+    fireEvent.type(input, 'Dude');
 
     const ButtonClick = await screen.findByRole('button', {
       name: 'Submit',
@@ -23,8 +39,8 @@ describe('NewsSearch Container', () => {
     fireEvent.click(ButtonClick);
 
     return waitFor(() => {
-      const articles = screen.getAllByText('bitcoin', { exact: false });
-      expect(articles).toHaveLength(37);
+      const articles = screen.getByText('El Duderino', { exact: true});
+      expect(articles).toBeInTheDocument();
     });
   });
 });
