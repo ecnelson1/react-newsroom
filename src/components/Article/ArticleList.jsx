@@ -8,6 +8,7 @@ function ArticleList({articles}) {
             {articles.map((article) => {
                 return(
                     <Article
+                    key={article.url}
                     title={article.title} 
                     author={article.author} 
                     description={article.description} 
